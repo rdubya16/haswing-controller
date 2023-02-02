@@ -8,4 +8,6 @@ The 12 volt version came with a foot pedal, wireless remote and motor unit itsel
 
 ## RS-485
 
-The waterp
+The 4-pin waterproof connector was found to be RS-485 using an oscilloscope. RS-485 uses differental pair signaling on two of the pins. The other 2 pins are for 3.3v output +/-.
+
+![Connector](/images/connector.png?raw=true)
