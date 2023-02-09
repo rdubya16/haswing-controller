@@ -22,15 +22,15 @@ The start bit is 0x23 and the stop bit is 0x80. The device ID is 0x54. I havent 
 
 
 ### Command
+Start Bit | Device ID | Command | Stop Bit
+----------|-----------|---------|---------
+0x23      | 0x54      | 0x52    | 0x80
 
-[Start Bit (1 Byte)][Device ID (1 Byte)][Command (1 Byte)][Stop Bit (1 Byte)]
-
-Example: [0x23][0x54][0x52][0x80]
 
 ### Reponse
-[Start Bit (1 Byte)][Command (1 Byte)][Motor Status (1 Byte)][Motor Speed (1 Byte)][Battery Level (1 Byte)][Stop Bit (1 Byte)]
-
-Example: [0x23][0x52][0x00][0x0a][0x64][0x80]
+Start Bit | Command | Motor Status | Motor Speed | Battery Level | Stop Bit
+----------|---------|-------------|------------|--------------|---------
+0x23      | 0x52    | 0x00        | 0x0a       | 0x03         | 0x80
 
 
 Bits | Value
