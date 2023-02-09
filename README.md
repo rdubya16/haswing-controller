@@ -12,6 +12,8 @@ The 4-pin waterproof connector was found to be RS-485 using an oscilloscope whil
 
 ![Connector](/images/connector.png?raw=true)
 
+I communicate with the trolling motor using a [RS-485 hat](https://www.amazon.ca/Coolwell-Communicate-Controller-Transceiver-SN65HVD230/dp/B0BRYB7P4W/) for the raspberry pi. The hat communicates over the serial port. The only connections required are A + B as the RS-485 protocol doesn't require common ground by design, it uses differental pair signaling.
+
 ## Protocol
 The code defines a class `Haswing` which communicates with the trolling motor over a serial port using an RS-485 hat.
 
