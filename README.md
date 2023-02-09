@@ -33,6 +33,7 @@ Start Bit | Command | Motor Status | Motor Speed | Battery Level | Stop Bit
 0x23      | 0x52    | 0x00        | 0x0a       | 0x03         | 0x80
 
 
+### Supported Commands
 Command | Hex Value
 --- | ---
 RIGHT_TURN | 0x52
