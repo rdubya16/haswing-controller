@@ -13,3 +13,40 @@ The 4-pin waterproof connector was found to be RS-485 using an oscilloscope whil
 ![Connector](/images/connector.png?raw=true)
 
 ## Protocol
+The code defines a class `Haswing` which communicates with the trolling motor over a serial port using an RS-485 hat.
+
+A command is sent to the motor by calling the method `_send_command` and passing it the command. The `_send_command` method builds a bytearray consisting of the start bit, device ID, command and stop bit. This bytearray is then written to the serial port. The motor will respond with a 6 byte response which is read by the `_send_command` method. The `_parse_response` method is then called to parse the response and update the status of the motor (stored in `_motor_status`), the motor speed (stored in `_motor_speed`), and the battery level (stored in `_battery_level`).
+
+
+The start bit is 0x23 and the stop bit is 0x80. The device ID is 0x54. I havent done extensive testing, but seems anything is accepted for the deviceID. 
+
+
+### Command
+
+[Start Bit (1 Byte)][Device ID (1 Byte)][Command (1 Byte)][Stop Bit (1 Byte)]
+
+Example: [0x23][0x54][0x52][0x80]
+
+### Reponse
+[Start Bit (1 Byte)][Command (1 Byte)][Motor Status (1 Byte)][Motor Speed (1 Byte)][Battery Level (1 Byte)][Stop Bit (1 Byte)]
+
+Example: [0x23][0x52][0x00][0x0a][0x64][0x80]
+
+
+Bits | Value
+--- | ---
+Start | 0x23
+Stop | 0x80
+Device | 0x54
+
+Command | Hex Value
+--- | ---
+RIGHT_TURN | 0x52
+LEFT_TURN | 0x4c
+INCREASE_SPEED | 0x55
+DECREASE_SPEED | 0x44
+TOGGLE_MOTOR | 0x53
+DONE | 0x4e
+
+
+
