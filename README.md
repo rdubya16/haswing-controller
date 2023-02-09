@@ -44,6 +44,8 @@ Start Bit | Command | Motor Status | Motor Speed | Battery Level | Stop Bit
 0x23      | 0x52    | 0x00        | 0x0a       | 0x03         | 0x80
 
 ### Response Fields
+The command byte in the response will match what was provided in the command sent.
+
 Motor Status | Motor Speed | Battery Level 
 -------------|-------------|--------------
 0x00, 0xFF   | 0x00->0x0a  | 0x00 -> 0x04
