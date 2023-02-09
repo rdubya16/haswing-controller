@@ -18,7 +18,7 @@ The code defines a class `Haswing` which communicates with the trolling motor ov
 A command is sent to the motor by calling the method `_send_command` and passing it the command. The `_send_command` method builds a bytearray consisting of the start bit, device ID, command and stop bit. This bytearray is then written to the serial port. The motor will respond with a 6 byte response which is read by the `_send_command` method. The `_parse_response` method is then called to parse the response and update the status of the motor (stored in `_motor_status`), the motor speed (stored in `_motor_speed`), and the battery level (stored in `_battery_level`).
 
 
-The start bit is 0x23 and the stop bit is 0x80. The device ID is 0x54. I havent done extensive testing, but seems anything is accepted for the deviceID. 
+The start bit is `0x23` and the stop bit is `0x80`. The device ID is `0x54`. I havent done extensive testing, but seems anything is accepted for the deviceID. 
 
 
 ### Command
@@ -32,12 +32,6 @@ Start Bit | Command | Motor Status | Motor Speed | Battery Level | Stop Bit
 ----------|---------|-------------|------------|--------------|---------
 0x23      | 0x52    | 0x00        | 0x0a       | 0x03         | 0x80
 
-
-Bits | Value
---- | ---
-Start | 0x23
-Stop | 0x80
-Device | 0x54
 
 Command | Hex Value
 --- | ---
