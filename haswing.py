@@ -91,14 +91,3 @@ class Haswing:
     def battery_level(self):
         return self._battery_level
 
-# testing
-t = Haswing()
-t.set_speed(5)
-t.toggle_motor()
-time.sleep(1)
-t.toggle_motor()
-t.right(100)
-time.sleep(1)
-t.left(100)
-time.sleep(1)
-t.set_speed(1)
