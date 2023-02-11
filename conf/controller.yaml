@@ -1,0 +1,6 @@
+mqtt:
+  host: localhost
+  port: 1883 
+  topics:
+    compass-motor: motor-compass/sensor/heading/state 
+    compass-boat: boat-compass/sensor/heading/state

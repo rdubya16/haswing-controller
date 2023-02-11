@@ -1,22 +1,30 @@
 import paho.mqtt.client as mqtt
-import haswing
+import yaml
+
+with open("conf/controller.yaml", "r") as file:
+    config = yaml.load(file, Loader=yaml.FullLoader)
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code "+str(rc))
-
-    client.subscribe("motor-compass/sensor/heading/state")
+    for topic in config['mqtt']['topics'].values():
+      client.subscribe(topic)
 
 def on_heading(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload.decode()))
 
-client = mqtt.Client()
+mqtt_host = config['mqtt']['host']
+mqtt_port = config['mqtt']['port']
 
-mot = Haswing()
+client = mqtt.Client()
 
 client.on_connect = on_connect
 
-client.message_callback_add("motor-compass/sensor/heading/state", on_heading)
+boat_compass = config['mqtt']['topics']['compass-boat']
+motor_compass = config['mqtt']['topics']['compass-motor']
 
-client.connect("localhost", 1883, 60)
+client.message_callback_add(motor_compass, on_heading)
+client.message_callback_add(boat_compass, on_heading)
+
+client.connect(mqtt_host, mqtt_port, 60)
 
 client.loop_forever()
